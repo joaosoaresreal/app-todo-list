@@ -1,14 +1,13 @@
-
-
+import { Theme } from "./theme/ThemeProvider"
+import CssBaseline from '@mui/material/CssBaseline';
 
 function App() {
-  
-
-
   return (
     <>
-      sajsjsjksjk
-
+      <Theme>
+        <CssBaseline />
+        sajsjsjksjk
+      </Theme>
     </>
   )
 }
