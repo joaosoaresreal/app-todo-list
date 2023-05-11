@@ -1,6 +1,6 @@
 import { Theme } from "./theme/ThemeProvider"
 import CssBaseline from '@mui/material/CssBaseline';
-import { AppBar, Badge, Button, colors, Grid, TextField, Toolbar, Typography, useTheme, Divider } from "@mui/material";
+import { AppBar, Badge, Button, colors, Grid, TextField, Toolbar, Typography, useTheme, Divider, Box, Chip } from "@mui/material";
 import { Container } from "@mui/system";
 import { PlusCircle, Rocket, ClipboardText } from "phosphor-react";
 
@@ -40,9 +40,11 @@ function App() {
           }}>
             <Grid container spacing={tema.spacing(0.5) /*spacing é o gap do css*/} sx={{
               position: "absolute",
-              top: "-27px"
+              top: "-27px",
+              justifyContent: 'center'
+
             }}>
-              <Grid item xl={10} sm={12} xs={8}>
+              <Grid item xl={7} sm={12} xs={7}>
                 <TextField variant="outlined" name="task" fullWidth placeholder="Adicione uma nova tarefa" sx={{
                   background: colors.grey[800],
                 }} />
@@ -54,26 +56,25 @@ function App() {
               </Grid>
             </Grid>
 
-            <Grid container spacing={tema.spacing(4)}>
+            <Grid container spacing={tema.spacing(1)}>
 
-              <Grid item sx={{
-                display: "flex"
+              <Grid item xl={12} sm={12} xs={12} sx={{
+                position: 'relative',
+                display: "flex",
+                justifyContent: 'space-between',
               }}>
-                <Typography variant="caption" sx={{
-                  //display: "flex",
-                  alignItems: "center",
-                  gap: tema.spacing(0)
-                }}>
-                  <Badge color="primary" badgeContent={0} showZero>Tarefas Criadas</Badge>
-                </Typography>
-
-                <Typography variant="caption" sx={{
-                  //display: "flex",
-                  alignItems: "center",
-                  gap: tema.spacing(1)
-                }}>
-                  <Badge color="primary" badgeContent={0} showZero>Concluídas</Badge>
-                </Typography>
+                <Box display='flex' alignItems='center' gap={tema.spacing(1)}>
+                  <Typography variant="caption">
+                    Tarefas Criadas
+                  </Typography>
+                  <Chip label={0} />
+                </Box>
+                <Box display='flex' alignItems='center' gap={tema.spacing(1)}>
+                  <Typography variant="caption">
+                    Concluídas
+                  </Typography>
+                  <Chip label={0} />
+                </Box>
 
               </Grid>
 
@@ -83,10 +84,12 @@ function App() {
             <Divider /> {/* Linha que faz a divisão*/}
 
             <Grid container spacing={tema.spacing(0)}>
-              <Grid xl={12} xs={12} sx={{
-                //display: "flex",
+              <Grid xl={12} sm={12} xs={12} sx={{
+                position: 'relative',
+                //display: "flow-root",
                 alignItems: "center",
-                textAlign: 'center'
+                textAlign: 'center',
+                paddingTop: '10%'
               }}>
 
                 <ClipboardText size={56} color={colors.grey[700]} weight="light" />
