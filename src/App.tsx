@@ -3,10 +3,18 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { AppBar, Badge, Button, colors, Grid, TextField, Toolbar, Typography, useTheme, Divider, Box, Chip } from "@mui/material";
 import { Container } from "@mui/system";
 import { PlusCircle, Rocket, ClipboardText } from "phosphor-react";
+import { useEffect, useState } from "react";
 
 
 function App() {
   const tema = useTheme()
+
+  const [todos, setTodos] = useState<Todos[]>()
+
+  useEffect(()=>{
+    
+  },[])
+
   return (
     <>
       <Theme>
