@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Todos } from '../types';
+import { dados } from '../types';
 
 // Api que conecta com o banco usando 'axios'
 const api = axios.create({
@@ -20,7 +20,7 @@ export async function getById(id:number) {
 }
 
 // Salvar registro no banco
-export async function save(todos:Todos) {
+export async function save(todos:dados) {
     const response = await api.post(`todos`,{
         ...todos
     })
@@ -28,7 +28,7 @@ export async function save(todos:Todos) {
 }
 
 // Atualizar registro do banco
-export async function update(todos:Todos) {
+export async function update(todos:dados) {
     const response = await api.put(`todos/${todos.id}`,{
         ...todos
         /*

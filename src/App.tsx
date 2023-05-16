@@ -4,16 +4,40 @@ import { AppBar, Badge, Button, colors, Grid, TextField, Toolbar, Typography, us
 import { Container } from "@mui/system";
 import { PlusCircle, Rocket, ClipboardText } from "phosphor-react";
 import { useEffect, useState } from "react";
+import { Tarefas } from "./pages/tarefas";
+import { dados } from "./types";
+import { save, getAll } from "./service/api";
 
 
 function App() {
   const tema = useTheme()
 
-  const [todos, setTodos] = useState<Todos[]>()
+  const [todos, setTodos] = useState<dados[]>()
+  const [novaTarefa, setNovaTarefa] = useState('')
+  const [isLoading, setIsLoading] = useState<Boolean>(false)
 
-  useEffect(()=>{
-    
-  },[])
+  const handleNew = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNovaTarefa(event.target.value);
+  };
+
+  const handleClick = (/*event: React.ChangeEvent<HTMLInputElement>*/) => {
+    //const novaTarefa = event.target.value;
+    save({ novaTarefa }) // Método 'save' da api service
+  }
+
+  // const listar=(
+  //   getAll()
+  // )
+
+
+  useEffect(() => {
+    async function listarTarefas() {
+      setIsLoading(true)
+      setTodos(await getAll())
+      setIsLoading(false)
+    }
+    listarTarefas()
+  }, [])
 
   return (
     <>
@@ -53,12 +77,12 @@ function App() {
 
             }}>
               <Grid item xl={7} sm={12} xs={7}>
-                <TextField variant="outlined" name="task" fullWidth placeholder="Adicione uma nova tarefa" sx={{
+                <TextField variant="outlined" name="task" value={novaTarefa} onChange={handleNew} fullWidth placeholder="Adicione uma nova tarefa" sx={{
                   background: colors.grey[800],
                 }} />
               </Grid>
               <Grid item xl={2} sm={12} xs={3}>
-                <Button variant="contained" fullWidth sx={{
+                <Button variant="contained" fullWidth onClick={handleClick} sx={{
                   height: '100%'
                 }}> <span>Criar</span> <PlusCircle size={32} /> </Button>
               </Grid>
@@ -92,6 +116,16 @@ function App() {
             <Divider /> {/* Linha que faz a divisão*/}
 
             <Grid container spacing={tema.spacing(0)}>
+
+              {/* <Tarefas /> */}
+
+              {
+                todos.map(dados => {
+                  return <Tarefas key={dados.id} dadosTarefas={dados} />
+                })
+              }
+
+              {/*               
               <Grid xl={12} sm={12} xs={12} sx={{
                 position: 'relative',
                 //display: "flow-root",
@@ -115,7 +149,8 @@ function App() {
                   Crie tarefas e organize seus itens a fazer
                 </Typography>
 
-              </Grid>
+              </Grid> */}
+
             </Grid>
 
           </Container>
