@@ -12,7 +12,7 @@ import { save, getAll } from "./service/api";
 function App() {
   const tema = useTheme()
 
-  const [todos, setTodos] = useState<dados[]>()
+  const [todos, setTodos] = useState<dados[]>([])
   const [novaTarefa, setNovaTarefa] = useState('')
   const [isLoading, setIsLoading] = useState<Boolean>(false)
 
@@ -22,7 +22,7 @@ function App() {
 
   const handleClick = (/*event: React.ChangeEvent<HTMLInputElement>*/) => {
     //const novaTarefa = event.target.value;
-    save({ novaTarefa }) // Método 'save' da api service
+    save({ description:novaTarefa, done:false }) // Método 'save' da api service
   }
 
   // const listar=(

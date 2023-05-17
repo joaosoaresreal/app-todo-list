@@ -16,40 +16,29 @@
       "done": true
     },
     {
-      "novaTarefa": "sss",
-      "id": 4
+      "id": 4,
+      "description": "Tarefa 4",
+      "done": true
     },
     {
-      "novaTarefa": "sss",
+      "description": "ss",
+      "done": false,
       "id": 5
     },
     {
-      "novaTarefa": "teste",
+      "description": "teste",
+      "done": false,
       "id": 6
     },
     {
-      "novaTarefa": "testeahahshas",
+      "description": "teste ee",
+      "done": false,
       "id": 7
     },
     {
-      "novaTarefa": "testeahahshas",
+      "description": "ssssssssssssss",
+      "done": false,
       "id": 8
-    },
-    {
-      "novaTarefa": "testeahahshas",
-      "id": 9
-    },
-    {
-      "novaTarefa": "aaaaa",
-      "id": 10
-    },
-    {
-      "novaTarefa": "aaaaaaaaaaaaaaa",
-      "id": 11
-    },
-    {
-      "novaTarefa": "asss",
-      "id": 12
     }
   ]
 }

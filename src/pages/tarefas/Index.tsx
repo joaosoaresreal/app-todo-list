@@ -1,5 +1,7 @@
-import { colors, Checkbox, Grid, ListItem, ListItemText, Button } from "@mui/material";
+import { colors, Checkbox, Grid, ListItem, ListItemText } from "@mui/material";
 import { Trash } from "phosphor-react";
+import { useState } from "react";
+import { exclude, update } from "../../service/api";
 import { dados } from "../../types";
 
 type TarefasProps = {
@@ -8,6 +10,16 @@ type TarefasProps = {
 
 export function Tarefas({ dadosTarefas: dados }: TarefasProps) {
     const {description, done} = dados
+    //const {alterar, setAlterar} = useState()
+
+    const excluir = () =>{
+        exclude()
+    }
+
+    const concluir = () =>{
+        update()
+    }
+
     return (
         <>
             <Grid xl={12} sm={12} xs={12} sx={{
@@ -15,7 +27,7 @@ export function Tarefas({ dadosTarefas: dados }: TarefasProps) {
                 //display: "flow-root",
                 alignItems: "center",
                 textAlign: 'center',
-                paddingTop: '10%'
+                paddingTop: '2%'
             }}>
 
                 <ListItem sx={{
@@ -23,7 +35,7 @@ export function Tarefas({ dadosTarefas: dados }: TarefasProps) {
                 }}>
                     <Checkbox checked={done} />
                     <ListItemText primary={description} />
-                    <Trash size={22} weight="bold"  />
+                    <Trash size={22} weight="bold" onClick={excluir}/>
                 </ListItem>
 
             </Grid>
