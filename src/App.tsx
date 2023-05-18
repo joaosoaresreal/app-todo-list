@@ -22,12 +22,21 @@ function App() {
 
   const handleClick = (/*event: React.ChangeEvent<HTMLInputElement>*/) => {
     //const novaTarefa = event.target.value;
-    save({ description:novaTarefa, done:false }) // Método 'save' da api service
+    save({ description: novaTarefa, done: false }) // Método 'save' da api service
   }
 
   // const listar=(
   //   getAll()
   // )
+
+  let concluidas = () => {
+    todos.map(dados => {
+      if (dados.done == false) {
+        let conte = conte + 1
+        return conte
+      }
+    })
+  }
 
 
   useEffect(() => {
