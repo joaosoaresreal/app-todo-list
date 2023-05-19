@@ -38,7 +38,6 @@ function App() {
     })
   }
 
-
   useEffect(() => {
     async function listarTarefas() {
       setIsLoading(true)

@@ -13,7 +13,7 @@ export function Tarefas({ dadosTarefas: dados }: TarefasProps) {
     //const {alterar, setAlterar} = useState()
 
     const excluir = () =>{
-        exclude()
+        exclude(dados.id)
     }
 
     const concluir = () =>{
