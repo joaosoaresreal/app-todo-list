@@ -4,7 +4,7 @@ import { AppBar, Badge, Button, colors, Grid, TextField, Toolbar, Typography, us
 import { Container } from "@mui/system";
 import { PlusCircle, Rocket, ClipboardText } from "phosphor-react";
 import { useEffect, useState } from "react";
-import { Tarefas } from "./pages/tarefas";
+import { Tarefas } from "./pages/tarefas/Index";
 import { dados } from "./types";
 import { save, getAll } from "./service/api";
 
@@ -15,27 +15,21 @@ function App() {
   const [todos, setTodos] = useState<dados[]>([])
   const [novaTarefa, setNovaTarefa] = useState('')
   const [isLoading, setIsLoading] = useState<Boolean>(false)
+  const [concluida, setConcluida] = useState(0)
 
+  // Pegando o valor digitado pelo usuário
   const handleNew = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNovaTarefa(event.target.value);
   };
-
-  const handleClick = (/*event: React.ChangeEvent<HTMLInputElement>*/) => {
-    //const novaTarefa = event.target.value;
-    save({ description: novaTarefa, done: false }) // Método 'save' da api service
-  }
-
-  // const listar=(
-  //   getAll()
-  // )
-
-  let concluidas = () => {
-    todos.map(dados => {
-      if (dados.done == false) {
-        let conte = conte + 1
-        return conte
-      }
-    })
+  
+  // Salvando a nova tarefa
+  const handleClick = async() => {
+    const novoValor ={
+      description:novaTarefa,
+      done:false
+    }
+    const salvar:dados = await save(novoValor)// Método 'save' da api service
+    setTodos((oldtodos:dados[])=> {return[...oldtodos, salvar]}) // faz aparecer a nova tarefa sem precisar renderizar novamente
   }
 
   useEffect(() => {
@@ -43,9 +37,28 @@ function App() {
       setIsLoading(true)
       setTodos(await getAll())
       setIsLoading(false)
+      
+      // const total = await getAll()
+      // setConcluida(() => {
+      //   return 0
+      // })
+  
+      // total.map((dados: dados) => {
+      //   if (dados.done) {
+      //     setConcluida((valor) =>{
+      //       return valor +1
+      //     })
+      //   }
+      // })
+      // setNovaTarefa(total)
+
     }
     listarTarefas()
   }, [])
+
+
+
+
 
   return (
     <>
@@ -113,7 +126,7 @@ function App() {
                   <Typography variant="caption">
                     Concluídas
                   </Typography>
-                  <Chip label={0} />
+                  <Chip label={concluida} />
                 </Box>
 
               </Grid>
